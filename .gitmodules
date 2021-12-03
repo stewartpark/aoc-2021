@@ -1,0 +1,3 @@
+[submodule "epilang"]
+	path = epilang
+	url = https://github.com/stewartpark/epilang
