@@ -3,10 +3,8 @@ let data = scan().split("\n").filter((x) => x).map(int)
 let windows(arr, n) =
     let lag(arr, n, i) = arr.drop(n - i).reverse().drop(i).reverse().collect()
     let innerWindows(arr, n, i) =
-        {
-            zip(arr.innerWindows(n, i - 1), arr.lag(n, i)).map(flatten) if i > 1
-            arr.lag(n, i)
-        }
+        { zip(arr.innerWindows(n, i - 1), arr.lag(n, i)).map(flatten) if i > 1
+          arr.lag(n, i) }
     arr.innerWindows(n, n)
 
 let part1(data) = data.windows(2).filter((x) => x_0 > x_1).count()

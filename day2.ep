@@ -1,0 +1,39 @@
+let data = scan()
+    .split("\n")
+    .filter((x) => x)
+    .map((x) => x.split(" ").collect())
+    .map((x) => [x_0, int(x_1)])
+
+let calculatePart1(data) =
+    let inner(i, h, v) =
+        let next() =
+            let line    = data_i
+            let command = line_0
+            let steps   = line_1
+            { inner(i + 1, h + steps, v        ) if command == "forward"
+              inner(i + 1, h        , v + steps) if command == "down"
+              inner(i + 1, h        , v - steps) if command == "up"
+              [h, v] }
+        { next() if count(data) > i
+          [h, v] }
+    inner(0, 0, 0)
+
+let calculatePart2(data) =
+    let inner(i, h, v, aim) =
+        let next() =
+            let line    = data_i
+            let command = line_0
+            let steps   = line_1
+            { inner(i + 1, h + steps, v + aim * steps, aim        ) if command == "forward"
+              inner(i + 1, h        , v              , aim + steps) if command == "down"
+              inner(i + 1, h        , v              , aim - steps) if command == "up"
+              [h, v, aim] }
+        { next() if count(data) > i
+          [h, v, aim] }
+    inner(0, 0, 0, 0)
+
+let part1 = calculatePart1(data).reduce(*, 1)
+let part2 = calculatePart2(data).take(2).reduce(*, 1)
+
+print("Part 1: ", part1, "\n"
+     ,"Part 2: ", part2, "\n")
