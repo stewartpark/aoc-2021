@@ -1,0 +1,43 @@
+let data = scan()
+    .split("\n")
+    .filter((x) => x)
+let length = data_0.count()
+
+let countBits(arr) =
+    arr
+        .map((x) => { [1, 0] if x == "0"
+                      [0, 1] if x == "1" })
+        .reduce((x, y) => [x_0 + y_0, x_1 + y_1], [0, 0])
+
+let createNumberWithCondition(stats, condition) = 
+    let seq = stats
+        .map((x) => { "0" if condition(x)
+                      "1" if (not condition(x)) })
+        .collect()
+    "".join(seq)
+
+let stats =
+    range(0, length)
+        .map((x) => data.map((y) => y_x).countBits())
+
+let part1(stats) =
+    let gammaRate = stats.createNumberWithCondition((x) => x_0 > x_1)
+    let epsilonRate = stats.createNumberWithCondition((x) => x_0 < x_1)
+    println(gammaRate, " * ", epsilonRate, " = ", int(gammaRate, 2) * int(epsilonRate, 2))
+
+let part2(data) =
+    let filterUntilExhausted(data, f, ifSame, i) =
+        let stats = data.map((x) => x_i).countBits()
+        let bitCondition = { "0" if f(stats)
+                             "1" if (not f(stats)) 
+                             ifSame }
+        let filteredData = data.filter((x) => x_i == bitCondition)
+        { filteredData_0 if filteredData.count() == 1
+          filteredData.filterUntilExhausted(f, ifSame, i + 1) }
+
+    let lifeSupport = int(data.filterUntilExhausted((x) => x_0 >  x_1, "1", 0), 2)
+    let co2         = int(data.filterUntilExhausted((x) => x_0 <= x_1, "0", 0), 2)
+    println(lifeSupport, " * ", co2, " = ", lifeSupport * co2)
+
+    
+[part1(stats), part2(data)]
