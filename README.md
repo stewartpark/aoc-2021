@@ -1,6 +1,6 @@
 # aoc-2021
 
 ```bash
-$ git submodule --init --recursive
-$ python -m pyep (file)
+$ git submodule update --init --recursive
+$ make run DAY=1
 ```
